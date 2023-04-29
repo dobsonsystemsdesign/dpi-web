@@ -1,0 +1,24 @@
+{
+  "name": "dpi-web",
+  "version": "1.0.0",
+  "description": "The official website of Dobson Plumbing Inc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dobsonsystemsdesign/dpi-web.git"
+  },
+  "author": "Dobson Systems Design",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dobsonsystemsdesign/dpi-web/issues"
+  },
+  "homepage": "https://github.com/dobsonsystemsdesign/dpi-web#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-exec": "^5.0.0",
+    "tailwindcss": "^3.3.2"
+  }
+}

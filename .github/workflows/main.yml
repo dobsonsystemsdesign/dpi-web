@@ -35,7 +35,7 @@ jobs:
         # SSH Private Key
         PRIVATE_KEY: ${{secrets.DO_PRIV_KEY}}
         # Folder to be transferred
-        SOURCE: /dist
+        SOURCE: /dist/dpi-web
         # Exlude paths or file in source folder with glob features
         #EXCLUDE: # optional
         # Using zip for stability at transfer, file name of zip

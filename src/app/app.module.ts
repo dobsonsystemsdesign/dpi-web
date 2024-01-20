@@ -4,13 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { NavLinkComponent } from './nav-link/nav-link.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { FooterComponent } from './footer/footer.component';
+import { ScrollStatusDirective } from './directives/scroll-status.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    NavLinkComponent
+    AboutComponent,
+    ContactComponent,
+    FooterComponent,
+    ScrollStatusDirective
   ],
   imports: [
     BrowserModule,

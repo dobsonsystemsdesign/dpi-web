@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  scrollTo(id: string) {
+    let el = document.getElementById(id);
+    if (el != null) {
+      el.scrollIntoView();
+    } else { 
+      console.log("unable to find navigation point: " + id);
+    }
+  }
+
 }

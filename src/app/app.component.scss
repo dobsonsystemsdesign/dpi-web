@@ -1,0 +1,15 @@
+:host {
+  --header-offset: 70px;
+}
+
+main {
+  position: relative;
+  top: var(--header-offset);
+}
+
+div {
+  padding: 20px;
+  margin: 20px 0;
+}
+
+

@@ -1,7 +1,12 @@
-<nav appScrollStatus>
-    <img src="/assets/logo.png">
-    <a (click)="scrollTo('about')">About</a>
-    <a (click)="scrollTo('contact')">Contact</a>
+<div class="fixed-header">
+  <mat-toolbar class="header" color="primary">
+    <img src="/assets/logo.png" alt="Dobson Plumbing" (click)="scrollTo('about')">
 
-        <!-- <a routerLink="/login">Login</a> -->
-</nav>
+
+<!--    <nav>
+      <a (click)="scrollTo('about')">About</a>
+      <a (click)="scrollTo('contact')">Contact</a>
+      &lt;!&ndash; Add more navigation links as needed &ndash;&gt;
+    </nav>-->
+  </mat-toolbar>
+</div>

@@ -1,46 +1,34 @@
 on:
-  pull_request:
+  push:
     branches:
-    - main
+      - main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v1
-    - uses: actions/setup-node@v1 #this installs node and npm for us
+      uses: actions/checkout@v4
+    - name: Node setup
+      uses: actions/setup-node@v4 #this installs node and npm for us
       with:
-        node-version: '10.x'
-    - uses: actions/cache@v1
+        node-version: '20.x'
+    - name: Caching
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-node-    
+          ${{ runner.os }}-node-
     - name: Build
       run: |
         npm install
         npm run-script deploy
-    - name: SSH Push
-      # You may pin to the exact commit or the version.
-      # uses: ErenKrt/ssh-push@cad78a18fe254e919c7232134c73e6d02773cbae
-      uses: ErenKrt/ssh-push@1.0
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
       with:
-        # IP Address of remote host
-        HOST: 159.223.126.194
-        # Port of SSH Protocol
-        PORT: 22
-        # Username of SSH user
-        USERNAME: jdobson
-        # SSH Private Key
-        PRIVATE_KEY: ${{secrets.DO_PRIV_KEY}}
-        # Folder to be transferred
-        SOURCE: /dist/dpi-web
-        # Exlude paths or file in source folder with glob features
-        #EXCLUDE: # optional
-        # Using zip for stability at transfer, file name of zip
-        #ZIPNAME: # optional, default is build.zip
-        # Remote host path to copy zip
-        OUTDIR: /var/www/dpi-web
-        # Execute commands after transfer source file
-        #SCRIPTS: # optional
+        key: ${{secrets.DO_PRIV_KEY}}
+        known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
+    - name: Adding Known Hosts
+      run: ssh-keyscan -H 159.223.126.194 >> ~/.ssh/known_hosts
+    - name: Deploy with rsync
+      run: rsync -avz ./dist/dpi-web/ jdobson@159.223.126.194:/var/www/dpi-web/

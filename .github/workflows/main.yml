@@ -35,4 +35,3 @@ jobs:
       run: ssh-keyscan -H 159.223.126.194 >> ~/.ssh/known_hosts
     - name: Deploy with rsync
       run: rsync -avz ./dist/dpi-web/ jdobson@159.223.126.194:/var/www/dpi-web/
-
